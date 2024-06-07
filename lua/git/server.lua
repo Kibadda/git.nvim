@@ -12,7 +12,6 @@ end
 ---@param file string
 ---@param client string
 function M.open(file, client)
-  vim.print(file, client)
   local socket = vim.fn.sockconnect("pipe", client, { rpc = true })
 
   local bufnr = vim.api.nvim_create_buf(false, false)
