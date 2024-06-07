@@ -101,8 +101,30 @@ function M:post_run(stdout)
   }
 
   if self.show_output then
+    local skips = {
+      "Compressing objects",
+      "Counting objects",
+      "Resolving deltas",
+      "Unpacking objects",
+      "Writing objects",
+      "Receiving objects",
+      "Enumerating objects",
+      "Refreshing index",
+    }
+
     for _, line in ipairs(stdout) do
-      table.insert(output, { "\n" .. line })
+      local should_skip = false
+
+      for _, skip in ipairs(skips) do
+        if line:find(skip) then
+          should_skip = true
+          break
+        end
+      end
+
+      if not should_skip then
+        table.insert(output, { "\n" .. line })
+      end
     end
   end
 
