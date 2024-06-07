@@ -1,8 +1,7 @@
 ---@class git.command.options
 ---@field cmd string[]
----@field show_output? boolean
+---@field show_output? boolean|fun(self: git.command, opts: git.buffer.opts)
 ---@field pre_run? fun(self: git.command, fargs: string[]): boolean?
----@field post_run? fun(self: git.command, stdout: string[])
 ---@field completions? string[]|fun(fargs: string[]): string[]
 
 ---@class git.command : git.command.options
@@ -96,11 +95,9 @@ function M:complete(arg_lead)
 end
 
 function M:post_run(stdout)
-  local output = {
-    { "Done: " .. table.concat(self.cmd, " "), "WarningMsg" },
-  }
-
-  if self.show_output then
+  if not self.show_output then
+    vim.api.nvim_echo({ { "Done: " .. table.concat(self.cmd, " "), "WarningMsg" } }, true, {})
+  else
     local skips = {
       "Compressing objects",
       "Counting objects",
@@ -111,6 +108,8 @@ function M:post_run(stdout)
       "Enumerating objects",
       "Refreshing index",
     }
+
+    local lines = {}
 
     for _, line in ipairs(stdout) do
       local should_skip = false
@@ -123,12 +122,26 @@ function M:post_run(stdout)
       end
 
       if not should_skip then
-        table.insert(output, { "\n" .. line })
+        table.insert(lines, line)
       end
     end
-  end
 
-  vim.api.nvim_echo(output, true, {})
+    ---@type git.buffer.opts
+    local options = {
+      name = table.concat(self.cmd, " "),
+      lines = lines,
+      options = {
+        modifiable = false,
+        modified = false,
+      },
+    }
+
+    if type(self.show_output) == "function" then
+      self:show_output(options)
+    end
+
+    require("git.utils").open_buffer(options)
+  end
 end
 
 function M.new(opts)

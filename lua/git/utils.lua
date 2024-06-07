@@ -59,7 +59,14 @@ function M.select_remote()
   }
 end
 
----@param opts { name?: string, lines?: string[], options?: table, treesitter?: boolean, extmarks?: table }
+---@class git.buffer.opts
+---@field name? string
+---@field lines? string[]
+---@field options? table
+---@field treesitter? boolean
+---@field extmarks? table
+
+---@param opts git.buffer.opts
 function M.open_buffer(opts)
   local config = require("git.config").get()
 
