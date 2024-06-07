@@ -31,6 +31,11 @@ This plugin provides a user command `Git`. Supported git functionality:
 - pull
 - switch
 - fetch
+- rebase
+- merge
+- stash
+- reset
+- branch --delete
 
 Supported options on each command can be seen in the completions.
 

@@ -108,4 +108,72 @@ M.fetch = Command.new {
   completions = { "--prune" },
 }
 
+M.rebase = Command.new {
+  cmd = { "rebase" },
+  pre_run = function(_, fargs)
+    local should_select_commit = true
+
+    for _, arg in ipairs(fargs) do
+      if arg == "--abort" or arg == "--skip" or arg == "--continue" or not vim.startswith(arg, "--") then
+        should_select_commit = false
+        break
+      end
+    end
+
+    if should_select_commit then
+      local commit = require("git.utils").select_commit()
+
+      if not commit then
+        return false
+      end
+
+      table.insert(fargs, commit .. "^")
+    end
+  end,
+  completions = function(fargs)
+    if vim.fn.isdirectory ".git/rebase-apply" == 1 or vim.fn.isdirectory ".git/rebase-merge" == 1 then
+      if #fargs > 1 then
+        return {}
+      else
+        return { "--abort", "--skip", "--continue" }
+      end
+    else
+      return vim.list_extend({ "--interactive", "--autosquash" }, require("git.cache").short_branches)
+    end
+  end,
+}
+
+M.merge = Command.new {
+  cmd = { "merge" },
+  pre_run = function(_, fargs)
+    return #fargs > 0
+  end,
+  completions = function(fargs)
+    if #fargs > 1 then
+      return {}
+    end
+
+    return require("git.cache").full_branches
+  end,
+}
+
+M.stash = Command.new {
+  cmd = { "stash" },
+  completions = { "--staged", "--include-untracked" },
+}
+
+M.reset = Command.new {
+  cmd = { "reset" },
+  completions = function()
+    return vim.list_extend({ "--hard" }, require("git.cache").staged_files)
+  end,
+}
+
+M.delete = Command.new {
+  cmd = { "branch", "--delete" },
+  completions = function()
+    return vim.list_extend({ "--force" }, require("git.cache").local_branches)
+  end,
+}
+
 return M
