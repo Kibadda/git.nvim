@@ -105,38 +105,4 @@ function M.open_buffer(opts)
   return win, bufnr
 end
 
-function M.create_log_buffer(lines)
-  local extmarks = {}
-
-  for i, line in ipairs(lines) do
-    local hash, branch, date
-
-    hash, branch, date = line:match "^([^%s]+) %- (%([^%)]+%)).*(%([^%)]+%))$"
-
-    if not hash then
-      hash, date = line:match "^([^%s]+) %-.*(%([^%)]+%))$"
-    end
-
-    if not hash then
-      break
-    end
-
-    table.insert(extmarks, { line = i, col = 1, end_col = #hash, hl = "Red" })
-    if branch then
-      table.insert(extmarks, { line = i, col = #hash + 3, end_col = #hash + 3 + #branch, hl = "Yellow" })
-    end
-    table.insert(extmarks, { line = i, col = #line - #date, end_col = #line, hl = "Green" })
-  end
-
-  M.open_buffer {
-    name = "git log",
-    lines = lines,
-    extmarks = extmarks,
-    options = {
-      modifiable = false,
-      modified = false,
-    },
-  }
-end
-
 return M

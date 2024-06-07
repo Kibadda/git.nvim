@@ -177,10 +177,34 @@ M.delete = Command.new {
 }
 
 M.log = Command.new {
-  cmd = { "log", "--pretty=%h -%C()%d%Creset %s (%cr)"},
-  post_run = function(_, stdout)
-    require("git.utils").create_log_buffer(stdout)
-  end
+  cmd = { "log", "--pretty=%h -%C()%d%Creset %s (%cr)" },
+  show_output = function(_, options)
+    options.name = "log"
+
+    local extmarks = {}
+
+    for i, line in ipairs(options.lines) do
+      local hash, branch, date
+
+      hash, branch, date = line:match "^([^%s]+) %- (%([^%)]+%)).*(%([^%)]+%))$"
+
+      if not hash then
+        hash, date = line:match "^([^%s]+) %-.*(%([^%)]+%))$"
+      end
+
+      if not hash then
+        break
+      end
+
+      table.insert(extmarks, { line = i, col = 1, end_col = #hash, hl = "Red" })
+      if branch then
+        table.insert(extmarks, { line = i, col = #hash + 3, end_col = #hash + 3 + #branch, hl = "Yellow" })
+      end
+      table.insert(extmarks, { line = i, col = #line - #date, end_col = #line, hl = "Green" })
+    end
+
+    options.extmarks = extmarks
+  end,
 }
 
 return M
