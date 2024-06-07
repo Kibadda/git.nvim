@@ -3,11 +3,13 @@
 ---@field show_output? boolean
 ---@field pre_run? fun(self: git.command, fargs: string[]): boolean?
 ---@field post_run? fun(self: git.command, stdout: string[])
----@field complete? fun(self: git.command, arg_lead: string): string[]
 ---@field completions? string[]|fun(fargs: string[]): string[]
 
 ---@class git.command : git.command.options
+---@field new fun(opts: git.command.options): git.command
 ---@field run fun(self: git.command, fargs: string[])
+---@field complete fun(self: git.command, arg_lead: string): string[]
+---@field post_run fun(self: git.command, stdout: string[])
 local M = {}
 M.__index = M
 
@@ -107,7 +109,6 @@ function M:post_run(stdout)
   vim.api.nvim_echo(output, true, {})
 end
 
----@param opts git.command.options
 function M.new(opts)
   return setmetatable(opts, M) --[[@as git.command]]
 end
