@@ -57,4 +57,34 @@ function M.select_remote()
   }
 end
 
+---@param opts { name?: string, lines?: string[], options?: table, treesitter?: boolean }
+function M.open_buffer(opts)
+  local config = require("git.config").get()
+
+  local bufnr = vim.api.nvim_create_buf(false, false)
+  vim.api.nvim_buf_set_name(bufnr, opts.name or "git")
+  vim.api.nvim_buf_set_lines(bufnr, 0, -1, false, opts.lines or {})
+
+  local win = vim.api.nvim_open_win(bufnr, true, config.editor.window_config)
+
+  vim.keymap.set("n", "q", function()
+    vim.api.nvim_buf_delete(bufnr, { force = true })
+  end, { buffer = bufnr })
+
+  for k, v in pairs(opts.options) do
+    local info = vim.api.nvim_get_option_info2(k, {})
+    if info.scope == "buf" then
+      vim.bo[bufnr][k] = v
+    else
+      vim.wo[win][k] = v
+    end
+  end
+
+  if opts.treesitter and opts.options and opts.options.filetype then
+    pcall(vim.treesitter.start, bufnr, opts.options.filetype)
+  end
+
+  return win, bufnr
+end
+
 return M

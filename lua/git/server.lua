@@ -14,9 +14,6 @@ end
 function M.open(file, client)
   local socket = vim.fn.sockconnect("pipe", client, { rpc = true })
 
-  local bufnr = vim.api.nvim_create_buf(false, false)
-  vim.api.nvim_buf_set_name(bufnr, file)
-
   local config = require("git.config").get()
 
   local filetype, spell
@@ -28,12 +25,20 @@ function M.open(file, client)
     spell = config.editor.spell.rebase
   end
 
-  vim.bo[bufnr].bufhidden = "wipe"
-  vim.bo[bufnr].filetype = filetype
+  local _, bufnr = require("git.utils").open_buffer {
+    name = file,
+    lines = readlines(file),
+    options = {
+      filetype = filetype,
+      bufhidden = "wipe",
+      spell = spell,
+    },
+    treesitter = config.editor.treesitter,
+  }
 
-  vim.api.nvim_buf_set_lines(bufnr, 0, -1, false, readlines(file))
   vim.api.nvim_buf_call(bufnr, function()
     vim.cmd.w { bang = true }
+    vim.cmd.startinsert()
   end)
 
   local cancel = false
@@ -52,20 +57,7 @@ function M.open(file, client)
     cancel = true
     vim.cmd.stopinsert()
     vim.api.nvim_buf_delete(bufnr, { force = true })
-  end)
-
-  if config.editor.treesitter then
-    local ok = pcall(vim.treesitter.language.inspect, filetype)
-    if ok then
-      vim.treesitter.start(bufnr, filetype)
-    end
-  end
-
-  local win = vim.api.nvim_open_win(bufnr, true, config.editor.window_config)
-
-  if spell then
-    vim.wo[win].spell = true
-  end
+  end, { buffer = bufnr, desc = "Cancel" })
 end
 
 return M
