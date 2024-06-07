@@ -176,4 +176,11 @@ M.delete = Command.new {
   end,
 }
 
+M.log = Command.new {
+  cmd = { "log", "--pretty=%h -%C()%d%Creset %s (%cr)"},
+  post_run = function(_, stdout)
+    require("git.utils").create_log_buffer(stdout)
+  end
+}
+
 return M
