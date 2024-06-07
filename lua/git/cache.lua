@@ -1,5 +1,3 @@
----@alias git.cache.key "short_branches"|"full_branches"|"local_branches"|"unstaged_files"|"staged_files"
-
 ---@class git.cache
 ---@field short_branches string[]
 ---@field full_branches string[]
