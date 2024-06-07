@@ -1,5 +1,21 @@
 # Changelog
 
+## [2.0.0](https://github.com/Kibadda/git.nvim/compare/v1.1.0...v2.0.0) (2024-06-07)
+
+
+### ⚠ BREAKING CHANGES
+
+* open buffer for show_output
+
+### Features
+
+* open buffer for show_output ([89e60c2](https://github.com/Kibadda/git.nvim/commit/89e60c2ee0fca4b1dfab8a09eeed947ec767020c))
+
+
+### Bug Fixes
+
+* use new show_output for log command ([a4589b1](https://github.com/Kibadda/git.nvim/commit/a4589b1049e79344503ca7434ad03ec509e84053))
+
 ## [1.1.0](https://github.com/Kibadda/git.nvim/compare/v1.0.0...v1.1.0) (2024-06-07)
 
 
