@@ -29,7 +29,7 @@ M.defaults = {
 ---@return git.config
 function M.get()
   ---@type git.config
-  local config = vim.g.config or {}
+  local config = vim.g.git or {}
 
   vim.validate("config", config, "table")
 
