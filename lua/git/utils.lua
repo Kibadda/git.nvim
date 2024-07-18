@@ -65,6 +65,7 @@ end
 ---@field options? table
 ---@field treesitter? boolean
 ---@field extmarks? table
+---@field keymaps? table
 
 ---@param opts git.buffer.opts
 function M.open_buffer(opts)
@@ -99,6 +100,14 @@ function M.open_buffer(opts)
         end_col = extmark.end_col,
         hl_group = extmark.hl,
       })
+    end
+  end
+
+  if opts.keymaps then
+    for _, keymap in ipairs(opts.keymaps) do
+      vim.keymap.set(keymap.mode, keymap.lhs, function()
+        keymap.rhs(bufnr, win)
+      end, vim.tbl_extend("error", { buffer = bufnr }, keymap.opts or {}))
     end
   end
 
