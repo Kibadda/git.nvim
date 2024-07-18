@@ -84,7 +84,6 @@ M.commit = Command.new {
 
 M.push = Command.new {
   cmd = { "push" },
-  show_output = true,
   pre_run = function(_, fargs)
     if #fargs == 1 and fargs[1] == "--set-upstream" then
       local remote = require("git.utils").select_remote()
