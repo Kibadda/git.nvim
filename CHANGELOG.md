@@ -1,5 +1,26 @@
 # Changelog
 
+## [2.0.0](https://github.com/Kibadda/git.nvim/compare/v1.1.0...v2.0.0) (2024-07-18)
+
+
+### ⚠ BREAKING CHANGES
+
+* open buffer for show_output
+
+### Features
+
+* add highlights for status output ([b045484](https://github.com/Kibadda/git.nvim/commit/b045484074dccd8b83005d7d06596afb06ae6e77))
+* add keymap to open diff of commit in log ([5ebaf8c](https://github.com/Kibadda/git.nvim/commit/5ebaf8c0e81dbde7fcabef989ee06052bcec0adf))
+* add keymaps to git.buffer.opts ([75b95db](https://github.com/Kibadda/git.nvim/commit/75b95db4cc0ee767896e4df4959cf759693be75d))
+* open buffer for show_output ([89e60c2](https://github.com/Kibadda/git.nvim/commit/89e60c2ee0fca4b1dfab8a09eeed947ec767020c))
+* remove output from push ([a968b43](https://github.com/Kibadda/git.nvim/commit/a968b43edbd87b3d61231af270839441dac607e6))
+
+
+### Bug Fixes
+
+* correct name for config ([a3d6ba7](https://github.com/Kibadda/git.nvim/commit/a3d6ba763bf0cbb40614dd460235b44acd956e21))
+* use new show_output for log command ([a4589b1](https://github.com/Kibadda/git.nvim/commit/a4589b1049e79344503ca7434ad03ec509e84053))
+
 ## [1.1.0](https://github.com/Kibadda/git.nvim/compare/v1.0.0...v1.1.0) (2024-06-07)
 
 
