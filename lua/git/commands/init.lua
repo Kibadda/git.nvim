@@ -218,8 +218,32 @@ M.log = Command.new {
   cmd = { "log", "--pretty=%h -%C()%d%Creset %s (%cr)" },
   show_output = function(_, options)
     options.name = "log"
+    options.extmarks = {}
+    options.keymaps = {
+      {
+        mode = "n",
+        lhs = "<CR>",
+        rhs = function(bufnr, win)
+          local row = vim.api.nvim_win_get_cursor(win)[1]
+          local line = vim.api.nvim_buf_get_lines(bufnr, row - 1, row, false)[1]
+          local hash = line:match "^([^%s]+)"
 
-    local extmarks = {}
+          local utils = require "git.utils"
+
+          local difflines = utils.git_command { "diff", string.format("%s^..%s", hash, hash) }
+
+          utils.open_buffer {
+            name = "diff",
+            lines = difflines,
+            options = {
+              modifiable = false,
+              modified = false,
+              filetype = "diff",
+            },
+          }
+        end,
+      },
+    }
 
     for i, line in ipairs(options.lines) do
       local hash, branch, date
@@ -234,14 +258,12 @@ M.log = Command.new {
         break
       end
 
-      table.insert(extmarks, { line = i, col = 1, end_col = #hash, hl = "Red" })
+      table.insert(options.extmarks, { line = i, col = 1, end_col = #hash, hl = "Red" })
       if branch then
-        table.insert(extmarks, { line = i, col = #hash + 3, end_col = #hash + 3 + #branch, hl = "Yellow" })
+        table.insert(options.extmarks, { line = i, col = #hash + 3, end_col = #hash + 3 + #branch, hl = "Yellow" })
       end
-      table.insert(extmarks, { line = i, col = #line - #date, end_col = #line, hl = "Green" })
+      table.insert(options.extmarks, { line = i, col = #line - #date, end_col = #line, hl = "Green" })
     end
-
-    options.extmarks = extmarks
   end,
 }
 
