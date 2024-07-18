@@ -5,7 +5,45 @@ local M = {}
 
 M.status = Command.new {
   cmd = { "status" },
-  show_output = true,
+  show_output = function(_, options)
+    options.extmarks = {}
+
+    local branch = options.lines[1]:match "^On branch (.*)$"
+    if branch then
+      table.insert(options.extmarks, { line = 1, col = 11, end_col = #options.lines[1], hl = "Blue" })
+    end
+
+    local upstream = options.lines[2]:match "'([a-zA-z%-]+/[a-zA-z%-]+)'"
+    if upstream then
+      table.insert(
+        options.extmarks,
+        { line = 2, col = #options.lines[2] - #upstream - 1, end_col = #options.lines[2] - 2, hl = "Blue" }
+      )
+    end
+
+    local highlight
+    for i = 3, #options.lines do
+      local line = options.lines[i]
+
+      if line:find "Changes not staged for commit" or line:find "Untracked files" then
+        highlight = "Red"
+      elseif line:find "Changes to be committed" then
+        highlight = "Green"
+      end
+
+      if vim.startswith(line, "\t") then
+        table.insert(options.extmarks, { line = i, col = 1, end_col = #line, hl = highlight })
+      else
+        local command_start, command_end = line:find '"[^"]+"'
+        if command_start then
+          table.insert(
+            options.extmarks,
+            { line = i, col = command_start + 1, end_col = command_end - 1, hl = "Yellow" }
+          )
+        end
+      end
+    end
+  end,
 }
 
 M.add = Command.new {
