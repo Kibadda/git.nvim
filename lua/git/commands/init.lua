@@ -22,7 +22,7 @@ M.status = Command.new {
     end
 
     local highlight
-    for i = 3, #options.lines do
+    for i = 1, #options.lines do
       local line = options.lines[i]
 
       if line:find "Changes not staged for commit" or line:find "Untracked files" then
