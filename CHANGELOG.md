@@ -1,5 +1,26 @@
 # Changelog
 
+## [3.0.0](https://github.com/Kibadda/git.nvim/compare/v2.0.0...v3.0.0) (2024-07-22)
+
+
+### ⚠ BREAKING CHANGES
+
+* simplify config loading/merging
+
+### Features
+
+* add health check ([f9dc2bb](https://github.com/Kibadda/git.nvim/commit/f9dc2bb6e85a2b6631d448401f8aab5f06f5ff98))
+
+
+### Bug Fixes
+
+* missing status highlight if no upstream branch ([db1678c](https://github.com/Kibadda/git.nvim/commit/db1678c3365b9309dd8063d6d2fc00acf3461fca))
+
+
+### Code Refactoring
+
+* simplify config loading/merging ([db5f433](https://github.com/Kibadda/git.nvim/commit/db5f433fe1fee41c04e5224469440bb70412fd09))
+
 ## [2.0.0](https://github.com/Kibadda/git.nvim/compare/v1.1.0...v2.0.0) (2024-07-18)
 
 
