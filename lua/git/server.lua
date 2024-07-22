@@ -14,7 +14,7 @@ end
 function M.open(file, client)
   local socket = vim.fn.sockconnect("pipe", client, { rpc = true })
 
-  local config = require("git.config").get()
+  local config = require "git.config"
 
   local filetype, spell
   if file:find "COMMIT_EDITMSG" or file:find "MERGE_MSG" then

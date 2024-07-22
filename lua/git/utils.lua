@@ -69,7 +69,7 @@ end
 
 ---@param opts git.buffer.opts
 function M.open_buffer(opts)
-  local config = require("git.config").get()
+  local config = require "git.config"
 
   local bufnr = vim.api.nvim_create_buf(false, false)
   vim.api.nvim_buf_set_name(bufnr, opts.name or "git")
