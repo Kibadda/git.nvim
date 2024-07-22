@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.1.0](https://github.com/Kibadda/git.nvim/compare/v3.0.0...v3.1.0) (2024-07-22)
+
+
+### Features
+
+* add diff command for files ([1b9b2ee](https://github.com/Kibadda/git.nvim/commit/1b9b2ee98866abc184ea9e017784a5f52234989a))
+
 ## [3.0.0](https://github.com/Kibadda/git.nvim/compare/v2.0.0...v3.0.0) (2024-07-22)
 
 
