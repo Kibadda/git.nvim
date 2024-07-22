@@ -266,4 +266,14 @@ M.log = Command.new {
   end,
 }
 
+M.diff = Command.new {
+  cmd = { "diff" },
+  completions = function()
+    return require("git.cache").unstaged_files
+  end,
+  show_output = function(_, options)
+    options.options.filetype = "diff"
+  end,
+}
+
 return M
