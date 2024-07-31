@@ -21,7 +21,7 @@ local function select(opts)
   end
 
   if #lines <= 1 then
-    return lines[1]
+    return opts.choice and opts.choice(lines[1]) or lines[1]
   end
 
   local choice
