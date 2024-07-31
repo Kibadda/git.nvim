@@ -1,5 +1,19 @@
 # Changelog
 
+## [3.2.0](https://github.com/Kibadda/git.nvim/compare/v3.1.1...v3.2.0) (2024-07-31)
+
+
+### Features
+
+* **stash:** add new subcommands ([78ebda2](https://github.com/Kibadda/git.nvim/commit/78ebda2b28416b230ea932f6ff6e1e43ef7a9ee3))
+
+
+### Bug Fixes
+
+* **editor:** only start insert if line is empty ([7cf9c9e](https://github.com/Kibadda/git.nvim/commit/7cf9c9e7488833d7d736db0368f0d82460b22ad9))
+* **output:** replace ^I with spaces ([9f69b8e](https://github.com/Kibadda/git.nvim/commit/9f69b8ee45f2116d1bdb36551246c5ecc85ae163))
+* **select:** also apply choice function for single choices ([d924963](https://github.com/Kibadda/git.nvim/commit/d924963192f9a5227f374a97c195c5817fe3484d))
+
 ## [3.1.1](https://github.com/Kibadda/git.nvim/compare/v3.1.0...v3.1.1) (2024-07-31)
 
 
