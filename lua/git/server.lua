@@ -38,7 +38,9 @@ function M.open(file, client)
 
   vim.api.nvim_buf_call(bufnr, function()
     vim.cmd.w { bang = true }
-    vim.cmd.startinsert()
+    if vim.api.nvim_get_current_line() == "" then
+      vim.cmd.startinsert()
+    end
   end)
 
   local cancel = false
