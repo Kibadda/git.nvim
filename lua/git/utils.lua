@@ -9,9 +9,9 @@ function M.git_command(cmd)
   return vim.split(result.stdout, "\n")
 end
 
----@param opts { cmd: string[], prompt: string, decode?: function, format?: function, choice?: function }
+---@param opts { cmd: string[], prompt: string, decode?: (fun(line: string): any), format?: function, choice?: function }
 ---@return string?
-local function select(opts)
+local function ui_select(opts)
   local lines = {}
 
   for _, line in ipairs(M.git_command(opts.cmd)) do
@@ -37,7 +37,7 @@ local function select(opts)
 end
 
 function M.select_commit()
-  return select {
+  return ui_select {
     cmd = { "log", "--pretty=%h|%s" },
     prompt = "Commit",
     decode = function(line)
@@ -53,7 +53,7 @@ function M.select_commit()
 end
 
 function M.select_remote()
-  return select {
+  return ui_select {
     cmd = { "remote" },
     prompt = "Remote",
   }
