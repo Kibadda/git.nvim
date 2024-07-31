@@ -13,7 +13,7 @@ M.status = Command.new {
       table.insert(options.extmarks, { line = 1, col = 11, end_col = #options.lines[1], hl = "Blue" })
     end
 
-    local upstream = options.lines[2]:match "'([a-zA-z%-]+/[a-zA-z%-]+)'"
+    local upstream = options.lines[2]:match "'([a-zA-z0-9%-_]+/[a-zA-z0-9%-_]+)'"
     if upstream then
       table.insert(
         options.extmarks,

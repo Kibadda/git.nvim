@@ -106,7 +106,7 @@ function M:post_run(stdout)
       "Writing objects",
       "Receiving objects",
       "Enumerating objects",
-      "Refreshing index",
+      "Refresh index",
     }
 
     local lines = {}
