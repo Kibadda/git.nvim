@@ -63,7 +63,7 @@ function M:run(fargs)
       end
 
       if code ~= 0 then
-        vim.notify(table.concat(stdout, "\n"), vim.log.levels.ERROR)
+        vim.notify(table.concat(stdout, "\n"):gsub("	", string.rep(" ", 8)), vim.log.levels.ERROR)
       else
         self:post_run(stdout)
       end
