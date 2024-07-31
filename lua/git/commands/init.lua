@@ -266,7 +266,7 @@ M.stash = Command.new {
           return false
         end
 
-        table.insert(fargs, insert, '"' .. message .. '"')
+        table.insert(fargs, insert, message)
       end
     end
   end,
