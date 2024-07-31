@@ -59,6 +59,22 @@ function M.select_remote()
   }
 end
 
+function M.select_stash()
+  return ui_select {
+    cmd = { "stash", "list" },
+    prompt = "Stash",
+    decode = function(line)
+      return { line:match "^(stash@{%d+}): (.+)$" }
+    end,
+    format = function(item)
+      return item[2]
+    end,
+    choice = function(item)
+      return item and item[1] or nil
+    end,
+  }
+end
+
 ---@class git.buffer.opts
 ---@field name? string
 ---@field lines? string[]

@@ -4,9 +4,10 @@
 ---@field local_branches string[]
 ---@field unstaged_files string[]
 ---@field staged_files string[]
+---@field stashes string[]
 local Cache = setmetatable({}, {
   ---@param self table
-  ---@param key "short_branches"|"full_branches"|"local_branches"|"unstaged_files"|"staged_files"
+  ---@param key "short_branches"|"full_branches"|"local_branches"|"unstaged_files"|"staged_files"|"stashes"
   ---@return string[]
   __index = function(self, key)
     local utils = require "git.utils"
@@ -48,6 +49,8 @@ local Cache = setmetatable({}, {
       self[key] = vim.tbl_keys(files)
     elseif key == "staged_files" then
       self[key] = utils.git_command { "diff", "--cached", "--name-only" }
+    elseif key == "stashes" then
+      self[key] = utils.git_command { "stash", "list" }
     end
 
     return self[key]

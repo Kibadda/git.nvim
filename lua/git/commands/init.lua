@@ -196,7 +196,67 @@ M.merge = Command.new {
 
 M.stash = Command.new {
   cmd = { "stash" },
-  completions = { "--staged", "--include-untracked" },
+  pre_run = function(self, fargs)
+    if fargs[1] == "list" then
+      self.show_output = function(_, options)
+        options.extmarks = {}
+        options.keymaps = {
+          {
+            mode = "n",
+            lhs = "<CR>",
+            rhs = function(bufnr, win)
+              local row = vim.api.nvim_win_get_cursor(win)[1]
+              local line = vim.api.nvim_buf_get_lines(bufnr, row - 1, row, false)[1]
+              local stash = line:match "^(stash@{%d+})"
+
+              local utils = require "git.utils"
+
+              local difflines = utils.git_command { "stash", "show", "-p", stash }
+
+              utils.open_buffer {
+                name = "diff",
+                lines = difflines,
+                options = {
+                  modifiable = false,
+                  modified = false,
+                  filetype = "diff",
+                },
+              }
+            end,
+          },
+        }
+
+        for i, line in ipairs(options.lines) do
+          local stash = line:match "^(stash@{%d+})"
+
+          if stash then
+            table.insert(options.extmarks, { line = i, col = 1, end_col = #stash, hl = "Yellow" })
+          end
+        end
+
+        self.show_output = nil
+      end
+    elseif fargs[1] == "drop" or fargs[1] == "pop" or fargs[1] == "apply" then
+      local stash = require("git.utils").select_stash()
+
+      if not stash then
+        return false
+      end
+
+      table.insert(fargs, stash)
+    end
+  end,
+  completions = function(fargs)
+    if #fargs > 1 then
+      if vim.tbl_contains({ "drop", "pop", "apply", "list" }, fargs[1]) then
+        return {}
+      else
+        return { "--staged", "--include-untracked" }
+      end
+    else
+      return { "drop", "pop", "apply", "list", "--staged", "--include-untracked" }
+    end
+  end,
 }
 
 M.reset = Command.new {
