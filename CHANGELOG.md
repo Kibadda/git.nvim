@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.1.1](https://github.com/Kibadda/git.nvim/compare/v3.1.0...v3.1.1) (2024-07-31)
+
+
+### Bug Fixes
+
+* **status:** ignored output and fix regex for branch name ([1f484cb](https://github.com/Kibadda/git.nvim/commit/1f484cbb6b015d7b47a48ee3163161646e4d5eb4))
+
 ## [3.1.0](https://github.com/Kibadda/git.nvim/compare/v3.0.0...v3.1.0) (2024-07-22)
 
 
