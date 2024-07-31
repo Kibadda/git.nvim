@@ -244,6 +244,30 @@ M.stash = Command.new {
       end
 
       table.insert(fargs, stash)
+    else
+      local insert
+      for i, arg in ipairs(fargs) do
+        if arg == "--message" then
+          insert = i + 1
+          break
+        end
+      end
+
+      if insert then
+        local message
+
+        vim.ui.input({
+          prompt = "Enter branch name: ",
+        }, function(input)
+          message = input
+        end)
+
+        if not message or message == "" then
+          return false
+        end
+
+        table.insert(fargs, insert, '"' .. message .. '"')
+      end
     end
   end,
   completions = function(fargs)
@@ -251,10 +275,10 @@ M.stash = Command.new {
       if vim.tbl_contains({ "drop", "pop", "apply", "list" }, fargs[1]) then
         return {}
       else
-        return { "--staged", "--include-untracked" }
+        return { "--staged", "--include-untracked", "--message" }
       end
     else
-      return { "drop", "pop", "apply", "list", "--staged", "--include-untracked" }
+      return { "drop", "pop", "apply", "list", "--staged", "--include-untracked", "--message" }
     end
   end,
 }
