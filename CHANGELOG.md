@@ -1,5 +1,13 @@
 # Changelog
 
+## [3.3.1](https://github.com/Kibadda/git.nvim/compare/v3.3.0...v3.3.1) (2024-08-06)
+
+
+### Bug Fixes
+
+* **stash:** no need to quote message ([a8869f6](https://github.com/Kibadda/git.nvim/commit/a8869f6d84dd359135da741c29a4782cbdca8d3f))
+* **status:** wrong highlight positions ([9c8856e](https://github.com/Kibadda/git.nvim/commit/9c8856e18ee19553553bee52094f22130b9e4381))
+
 ## [3.3.0](https://github.com/Kibadda/git.nvim/compare/v3.2.0...v3.3.0) (2024-07-31)
 
 
