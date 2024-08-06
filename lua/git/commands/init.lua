@@ -8,17 +8,14 @@ M.status = Command.new {
   show_output = function(_, options)
     options.extmarks = {}
 
-    local branch = options.lines[1]:match "^On branch (.*)$"
+    local branch_start, branch_end, branch = options.lines[1]:find "^On branch (.*)$"
     if branch then
-      table.insert(options.extmarks, { line = 1, col = 11, end_col = #options.lines[1], hl = "Blue" })
+      table.insert(options.extmarks, { line = 1, col = branch_start, end_col = branch_end, hl = "Blue" })
     end
 
-    local upstream = options.lines[2]:match "'([a-zA-z0-9%-_]+/[a-zA-z0-9%-_]+)'"
+    local upstream_start, upstream_end, upstream = options.lines[2]:find "'([a-zA-z0-9%-_]+/[a-zA-z0-9%-_]+)'"
     if upstream then
-      table.insert(
-        options.extmarks,
-        { line = 2, col = #options.lines[2] - #upstream - 1, end_col = #options.lines[2] - 2, hl = "Blue" }
-      )
+      table.insert(options.extmarks, { line = 2, col = upstream_start, end_col = upstream_end, hl = "Blue" })
     end
 
     local highlight
