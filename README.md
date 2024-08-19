@@ -36,6 +36,8 @@ This plugin provides a user command `Git`. Supported git functionality:
 - stash
 - reset
 - branch --delete
+- log
+- diff
 
 Supported options on each command can be seen in the completions.
 
