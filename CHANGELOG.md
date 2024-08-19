@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.3.2](https://github.com/Kibadda/git.nvim/compare/v3.3.1...v3.3.2) (2024-08-19)
+
+
+### Bug Fixes
+
+* **status:** wrong highlight on first line ([3281a4a](https://github.com/Kibadda/git.nvim/commit/3281a4a587d2d04af6ac1723477cae46ba46f027))
+
 ## [3.3.1](https://github.com/Kibadda/git.nvim/compare/v3.3.0...v3.3.1) (2024-08-06)
 
 
