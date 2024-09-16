@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.3.3](https://github.com/Kibadda/git.nvim/compare/v3.3.2...v3.3.3) (2024-09-16)
+
+
+### Bug Fixes
+
+* use proper highlights ([c122de4](https://github.com/Kibadda/git.nvim/commit/c122de4aaa7c3f7c937f87d6682b16d0bc1bca7e))
+
 ## [3.3.2](https://github.com/Kibadda/git.nvim/compare/v3.3.1...v3.3.2) (2024-08-19)
 
 
