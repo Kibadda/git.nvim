@@ -43,6 +43,21 @@ function M.validate(config)
     return false, err
   end
 
+  ok, err = validate("git.highlights", {
+    Branch = { config.highlights.Branch, "table", true },
+    Upstream = { config.highlights.Upstream, "table", true },
+    Untracked = { config.highlights.Untracked, "table", true },
+    Unstaged = { config.highlights.Unstaged, "table", true },
+    Commited = { config.highlights.Commited, "table", true },
+    Command = { config.highlights.Command, "table", true },
+    Stash = { config.highlights.Stash, "table", true },
+    Commit = { config.highlights.Commit, "table", true },
+    Date = { config.highlights.Date, "table", true },
+  })
+  if not ok then
+    return false, err
+  end
+
   return true
 end
 

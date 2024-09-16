@@ -19,6 +19,17 @@ vim.g.git = {
     treesitter = true,
     cancel = "<C-c>",
   },
+  highlights = {
+    Branch = { fg = "#7daea3" },
+    Upstream = { fg = "#7daea3" },
+    Untracked = { fg = "#ea6962" },
+    Unstaged = { fg = "#ea6962" },
+    Commited = { fg = "#a9b665" },
+    Command = { fg = "#d8a657" },
+    Stash = { fg = "#d8a657" },
+    Commit = { fg = "#ea6962" },
+    Date = { fg = "#a9b665" },
+  }
 }
 ```
 

@@ -12,6 +12,10 @@
 local M = {}
 M.__index = M
 
+for name, hl in pairs(require("git.config").highlights) do
+  vim.api.nvim_set_hl(0, "Git" .. name, hl)
+end
+
 local client_path
 
 function M:run(fargs)

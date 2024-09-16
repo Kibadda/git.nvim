@@ -12,23 +12,25 @@ M.status = Command.new {
     if branch then
       table.insert(
         options.extmarks,
-        { line = 1, col = #options.lines[1] - #branch, end_col = #options.lines[1], hl = "Blue" }
+        { line = 1, col = #options.lines[1] - #branch, end_col = #options.lines[1], hl = "GitBranch" }
       )
     end
 
     local upstream_start, upstream_end, upstream = options.lines[2]:find "'([a-zA-z0-9%-_]+/[a-zA-z0-9%-_]+)'"
     if upstream then
-      table.insert(options.extmarks, { line = 2, col = upstream_start, end_col = upstream_end, hl = "Blue" })
+      table.insert(options.extmarks, { line = 2, col = upstream_start, end_col = upstream_end, hl = "GitUpstream" })
     end
 
     local highlight
     for i = 1, #options.lines do
       local line = options.lines[i]
 
-      if line:find "Changes not staged for commit" or line:find "Untracked files" then
-        highlight = "Red"
+      if line:find "Changes not staged for commit" then
+        highlight = "GitUnstaged"
+      elseif line:find "Untracked files" then
+        highlight = "GitUntracked"
       elseif line:find "Changes to be committed" then
-        highlight = "Green"
+        highlight = "GitCommited"
       end
 
       if vim.startswith(line, "\t") then
@@ -38,7 +40,7 @@ M.status = Command.new {
         if command_start then
           table.insert(
             options.extmarks,
-            { line = i, col = command_start + 1, end_col = command_end - 1, hl = "Yellow" }
+            { line = i, col = command_start + 1, end_col = command_end - 1, hl = "GitCommand" }
           )
         end
       end
@@ -230,7 +232,7 @@ M.stash = Command.new {
           local stash = line:match "^(stash@{%d+})"
 
           if stash then
-            table.insert(options.extmarks, { line = i, col = 1, end_col = #stash, hl = "Yellow" })
+            table.insert(options.extmarks, { line = i, col = 1, end_col = #stash, hl = "GitStash" })
           end
         end
 
@@ -341,11 +343,11 @@ M.log = Command.new {
         break
       end
 
-      table.insert(options.extmarks, { line = i, col = 1, end_col = #hash, hl = "Red" })
+      table.insert(options.extmarks, { line = i, col = 1, end_col = #hash, hl = "GitCommit" })
       if branch then
-        table.insert(options.extmarks, { line = i, col = #hash + 3, end_col = #hash + 3 + #branch, hl = "Yellow" })
+        table.insert(options.extmarks, { line = i, col = #hash + 3, end_col = #hash + 3 + #branch, hl = "GitBranch" })
       end
-      table.insert(options.extmarks, { line = i, col = #line - #date, end_col = #line, hl = "Green" })
+      table.insert(options.extmarks, { line = i, col = #line - #date, end_col = #line, hl = "GitDate" })
     end
   end,
 }
