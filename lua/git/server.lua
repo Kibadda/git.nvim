@@ -63,6 +63,12 @@ function M.open(file, client)
     vim.cmd.stopinsert()
     vim.api.nvim_buf_delete(bufnr, { force = true })
   end, { buffer = bufnr, desc = "Cancel" })
+
+  vim.keymap.set("n", "q", function()
+    cancel = true
+    vim.cmd.stopinsert()
+    vim.api.nvim_buf_delete(bufnr, { force = true })
+  end, { buffer = bufnr, desc = "Cancel" })
 end
 
 return M
