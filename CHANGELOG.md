@@ -1,5 +1,23 @@
 # Changelog
 
+## [3.4.0](https://github.com/Kibadda/git.nvim/compare/v3.3.3...v3.4.0) (2024-09-17)
+
+
+### Features
+
+* **add:** add --edit flag ([ad1138d](https://github.com/Kibadda/git.nvim/commit/ad1138d3f377b919baf61e05a33fa4d199051d6a))
+* **config:** add command ([c0ca69b](https://github.com/Kibadda/git.nvim/commit/c0ca69b701949099f4a35c20e942db4fd592be49))
+* **diff:** add --cached flag ([6ab597c](https://github.com/Kibadda/git.nvim/commit/6ab597c50b75706e5e5815829678321f7f41c6ce))
+* **restore:** add command ([6df7414](https://github.com/Kibadda/git.nvim/commit/6df741486012cb017c93cacf16e83f05220f83a2))
+* **status:** add keymap to open file under cursor ([fc95a32](https://github.com/Kibadda/git.nvim/commit/fc95a32bda41d9710a61e0481b36be308b5d280a))
+
+
+### Bug Fixes
+
+* **editor:** only start insert mode for commit ([ef60beb](https://github.com/Kibadda/git.nvim/commit/ef60beb7c904fa0c867d5995bc6170d778168668))
+* **editor:** overwrite q keymap to cancel ([84d74f7](https://github.com/Kibadda/git.nvim/commit/84d74f7e1d533accc4ece61d688bf879ff730d3b))
+* remove empty last line in git editor ([d70e4f8](https://github.com/Kibadda/git.nvim/commit/d70e4f8df46ae4ad0e4b67dff20aa08f3b73604d))
+
 ## [3.3.3](https://github.com/Kibadda/git.nvim/compare/v3.3.2...v3.3.3) (2024-09-16)
 
 
