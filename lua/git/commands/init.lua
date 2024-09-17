@@ -7,6 +7,19 @@ M.status = Command.new {
   cmd = { "status" },
   show_output = function(_, options)
     options.extmarks = {}
+    options.keymaps = {
+      {
+        mode = "n",
+        lhs = "<CR>",
+        rhs = function()
+          local file = vim.fn.expand "<cWORD>"
+          if vim.uv.fs_stat(file) then
+            vim.cmd.wincmd "w"
+            vim.cmd.edit(file)
+          end
+        end,
+      },
+    }
 
     local branch = options.lines[1]:match "^On branch (.*)$"
     if branch then
