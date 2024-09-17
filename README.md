@@ -49,6 +49,7 @@ This plugin provides a user command `Git`. Supported git functionality:
 - branch --delete
 - log
 - diff
+- restore
 
 Supported options on each command can be seen in the completions.
 
