@@ -51,12 +51,12 @@ M.status = Command.new {
 M.add = Command.new {
   cmd = { "add" },
   pre_run = function(_, fargs)
-    if #fargs == 0 then
+    if #fargs == 0 or (#fargs == 1 and fargs[1] == "--edit") then
       table.insert(fargs, ".")
     end
   end,
   completions = function()
-    return require("git.cache").unstaged_files
+    return vim.list_extend({ "--edit" }, require("git.cache").unstaged_files)
   end,
 }
 

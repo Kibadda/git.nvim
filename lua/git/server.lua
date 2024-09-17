@@ -24,6 +24,8 @@ function M.open(file, client)
   elseif file:find "git%-rebase%-todo" then
     filetype = "git_rebase"
     spell = config.editor.spell.rebase
+  elseif file:find "ADD_EDIT.patch" then
+    filetype = "diff"
   end
 
   local _, bufnr = require("git.utils").open_buffer {
