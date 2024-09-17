@@ -81,7 +81,7 @@ end
 ---@field options? table
 ---@field treesitter? boolean
 ---@field extmarks? table
----@field keymaps? table
+---@field keymaps? { mode: string|string[], lhs: string, rhs: fun(bufnr: number, win: number), opts?: vim.api.keyset.keymap }[]
 
 ---@param opts git.buffer.opts
 function M.open_buffer(opts)

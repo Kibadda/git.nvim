@@ -28,6 +28,8 @@ function M.open(file, client)
     filetype = "diff"
   end
 
+  local cancel = false
+
   local _, bufnr = require("git.utils").open_buffer {
     name = file,
     lines = readlines(file),
@@ -37,6 +39,26 @@ function M.open(file, client)
       spell = spell,
     },
     treesitter = config.editor.treesitter,
+    keymaps = {
+      {
+        mode = { "i", "n" },
+        lhs = config.editor.cancel,
+        rhs = function(bufnr)
+          cancel = true
+          vim.cmd.stopinsert()
+          vim.api.nvim_buf_delete(bufnr, { force = true })
+        end,
+      },
+      {
+        mode = "n",
+        lhs = "q",
+        rhs = function(bufnr)
+          cancel = true
+          vim.cmd.stopinsert()
+          vim.api.nvim_buf_delete(bufnr, { force = true })
+        end,
+      },
+    },
   }
 
   vim.api.nvim_buf_call(bufnr, function()
@@ -45,8 +67,6 @@ function M.open(file, client)
       vim.cmd.startinsert()
     end
   end)
-
-  local cancel = false
 
   vim.api.nvim_buf_attach(bufnr, false, {
     on_detach = function()
@@ -57,18 +77,6 @@ function M.open(file, client)
       vim.fn.chanclose(socket)
     end,
   })
-
-  vim.keymap.set({ "i", "n" }, config.editor.cancel, function()
-    cancel = true
-    vim.cmd.stopinsert()
-    vim.api.nvim_buf_delete(bufnr, { force = true })
-  end, { buffer = bufnr, desc = "Cancel" })
-
-  vim.keymap.set("n", "q", function()
-    cancel = true
-    vim.cmd.stopinsert()
-    vim.api.nvim_buf_delete(bufnr, { force = true })
-  end, { buffer = bufnr, desc = "Cancel" })
 end
 
 return M
