@@ -17,9 +17,10 @@ function M.open(file, client)
 
   local config = require "git.config"
 
-  local filetype, spell
+  local filetype, spell, startinsert
   if file:find "COMMIT_EDITMSG" or file:find "MERGE_MSG" then
     filetype = "gitcommit"
+    startinsert = true
     spell = config.editor.spell.commit
   elseif file:find "git%-rebase%-todo" then
     filetype = "git_rebase"
@@ -63,7 +64,7 @@ function M.open(file, client)
 
   vim.api.nvim_buf_call(bufnr, function()
     vim.cmd.w { bang = true }
-    if vim.api.nvim_get_current_line() == "" then
+    if startinsert and vim.api.nvim_get_current_line() == "" then
       vim.cmd.startinsert()
     end
   end)
