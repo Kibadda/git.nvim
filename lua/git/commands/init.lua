@@ -390,4 +390,9 @@ M.restore = Command.new {
   end,
 }
 
+M.config = Command.new {
+  cmd = { "config" },
+  show_output = true,
+}
+
 return M

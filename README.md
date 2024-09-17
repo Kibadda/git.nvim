@@ -50,6 +50,7 @@ This plugin provides a user command `Git`. Supported git functionality:
 - log
 - diff
 - restore
+- config
 
 Supported options on each command can be seen in the completions.
 
