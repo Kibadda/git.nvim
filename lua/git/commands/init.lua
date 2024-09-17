@@ -354,8 +354,16 @@ M.log = Command.new {
 
 M.diff = Command.new {
   cmd = { "diff" },
-  completions = function()
-    return require("git.cache").unstaged_files
+  completions = function(fargs)
+    if #fargs > 1 then
+      if fargs[1] == "--cached" then
+        return require("git.cache").staged_files
+      else
+        return require("git.cache").unstaged_files
+      end
+    else
+      return vim.list_extend({ "--cached" }, require("git.cache").unstaged_files)
+    end
   end,
   show_output = function(_, options)
     options.options.filetype = "diff"
