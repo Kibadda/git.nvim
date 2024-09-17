@@ -4,9 +4,10 @@ local M = {}
 local function readlines(path)
   local handle = assert(io.open(path), "could not open file at path: " .. path)
 
-  local lines = handle:read "a"
+  local lines = vim.split(handle:read "a", "\n")
+  lines[#lines] = nil
 
-  return vim.split(lines, "\n")
+  return lines
 end
 
 ---@param file string
