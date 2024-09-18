@@ -87,6 +87,8 @@ end
 function M.open_buffer(opts)
   local config = require "git.config"
 
+  opts.options = vim.tbl_extend("keep", opts.options or {}, { spell = false })
+
   local bufnr = vim.api.nvim_create_buf(false, false)
   vim.api.nvim_buf_set_name(bufnr, opts.name or "git")
   vim.api.nvim_buf_set_lines(bufnr, 0, -1, false, opts.lines or {})
