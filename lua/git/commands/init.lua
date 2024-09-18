@@ -1,9 +1,9 @@
 ---@type table<string, git.command>
 return {
   add = require "git.commands.add",
+  branch = require "git.commands.branch",
   commit = require "git.commands.commit",
   config = require "git.commands.config",
-  delete = require "git.commands.delete",
   diff = require "git.commands.diff",
   fetch = require "git.commands.fetch",
   log = require "git.commands.log",
