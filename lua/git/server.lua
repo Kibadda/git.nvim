@@ -17,11 +17,21 @@ function M.open(file, client)
 
   local config = require "git.config"
 
-  local filetype, spell, startinsert
+  local filetype, spell, startinsert, keymaps
   if file:find "COMMIT_EDITMSG" or file:find "MERGE_MSG" then
     filetype = "gitcommit"
     startinsert = true
     spell = config.editor.spell.commit
+    keymaps = {
+      {
+        mode = { "i", "n" },
+        lhs = "<C-S>",
+        rhs = function()
+          vim.cmd.stopinsert()
+          vim.cmd.Git { args = { "diff", "--cached" } }
+        end,
+      },
+    }
   elseif file:find "git%-rebase%-todo" then
     filetype = "git_rebase"
     spell = config.editor.spell.rebase
@@ -40,7 +50,7 @@ function M.open(file, client)
       spell = spell,
     },
     treesitter = config.editor.treesitter,
-    keymaps = {
+    keymaps = vim.list_extend({
       {
         mode = { "i", "n" },
         lhs = config.editor.cancel,
@@ -59,7 +69,7 @@ function M.open(file, client)
           vim.api.nvim_buf_delete(bufnr, { force = true })
         end,
       },
-    },
+    }, keymaps or {}),
   }
 
   vim.api.nvim_buf_call(bufnr, function()
