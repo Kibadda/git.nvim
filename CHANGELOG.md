@@ -1,5 +1,24 @@
 # Changelog
 
+## [4.0.0](https://github.com/Kibadda/git.nvim/compare/v3.4.0...v4.0.0) (2024-09-18)
+
+
+### ⚠ BREAKING CHANGES
+
+* **branch:** replace delete command with branch command
+
+### Features
+
+* **branch:** replace delete command with branch command ([7db96e2](https://github.com/Kibadda/git.nvim/commit/7db96e2640b07421acc219a5d6833d3ee3a9f132))
+* **buffer:** only use first cmd as name ([1e15eb2](https://github.com/Kibadda/git.nvim/commit/1e15eb2d33453b1037aa2ab9f66456489bfc04e0))
+* **commit:** add keymap to show current diff ([1fce2e6](https://github.com/Kibadda/git.nvim/commit/1fce2e644d4f5a5a3a588f32c96cc59e2fbe0681))
+* **ui:** add statusline component to show rebase/merge ([b1f1bcc](https://github.com/Kibadda/git.nvim/commit/b1f1bcc72387c3834b7ad89587336b80cbf2f3ca))
+
+
+### Bug Fixes
+
+* **buffer:** fix nil options and default nospell ([3b80524](https://github.com/Kibadda/git.nvim/commit/3b80524461dead796239a9fb0ea6af264b8c01f7))
+
 ## [3.4.0](https://github.com/Kibadda/git.nvim/compare/v3.3.3...v3.4.0) (2024-09-17)
 
 
