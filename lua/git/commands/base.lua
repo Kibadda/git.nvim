@@ -100,7 +100,7 @@ end
 
 function M:post_run(stdout)
   if not self.show_output then
-    vim.api.nvim_echo({ { "Done: " .. table.concat(self.cmd, " "), "WarningMsg" } }, true, {})
+    vim.api.nvim_echo({ { "Done: " .. self.cmd[1], "WarningMsg" } }, true, {})
   else
     local skips = {
       "Compressing objects",
@@ -132,7 +132,7 @@ function M:post_run(stdout)
 
     ---@type git.buffer.opts
     local options = {
-      name = table.concat(self.cmd, " "),
+      name = self.cmd[1],
       lines = lines,
       options = {
         modifiable = false,

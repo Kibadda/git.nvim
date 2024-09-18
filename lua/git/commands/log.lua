@@ -4,7 +4,6 @@ local M = {
 }
 
 function M:show_output(options)
-  options.name = "log"
   options.extmarks = {}
   options.keymaps = {
     {
