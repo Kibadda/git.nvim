@@ -1,5 +1,18 @@
 # Changelog
 
+## [4.1.0](https://github.com/Kibadda/git.nvim/compare/v4.0.0...v4.1.0) (2024-09-25)
+
+
+### Features
+
+* add extra config to add custom commands ([dc9de91](https://github.com/Kibadda/git.nvim/commit/dc9de913713e55993a1f776126e71e97d7ee9c32))
+
+
+### Bug Fixes
+
+* **config:** add missing validate check on highlights ([02f8381](https://github.com/Kibadda/git.nvim/commit/02f83817661c9147c23196956d4bdf9d0b203f07))
+* **stash:** wrong prompt for message input ([79328dd](https://github.com/Kibadda/git.nvim/commit/79328dd6c36424327147085625ef4648f2fa5edd))
+
 ## [4.0.0](https://github.com/Kibadda/git.nvim/compare/v3.4.0...v4.0.0) (2024-09-18)
 
 
