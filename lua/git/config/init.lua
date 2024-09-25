@@ -44,7 +44,7 @@ local GitDefaultConfig = {
     Stash = { fg = "#d8a657" },
     Commit = { fg = "#ea6962" },
     Date = { fg = "#a9b665" },
-  }
+  },
 }
 
 ---@type git.config | (fun(): git.config) | nil

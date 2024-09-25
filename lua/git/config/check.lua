@@ -20,6 +20,7 @@ function M.validate(config)
 
   ok, err = validate("git", {
     editor = { config.editor, "table", true },
+    highlights = { config.highlights, "table", true },
   })
   if not ok then
     return false, err
