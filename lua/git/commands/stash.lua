@@ -64,7 +64,7 @@ function M:pre_run(fargs)
       local message
 
       vim.ui.input({
-        prompt = "Enter branch name: ",
+        prompt = "Enter message: ",
       }, function(input)
         message = input
       end)
