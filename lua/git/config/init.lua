@@ -18,6 +18,7 @@
 ---@class git.config
 ---@field editor? git.config.editor
 ---@field highlights? git.config.highlights
+---@field extra? table<string, git.command.options>
 
 ---@class git.internalconfig
 local GitDefaultConfig = {
@@ -45,6 +46,7 @@ local GitDefaultConfig = {
     Commit = { fg = "#ea6962" },
     Date = { fg = "#a9b665" },
   },
+  extra = {},
 }
 
 ---@type git.config | (fun(): git.config) | nil

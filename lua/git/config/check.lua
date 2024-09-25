@@ -21,6 +21,7 @@ function M.validate(config)
   ok, err = validate("git", {
     editor = { config.editor, "table", true },
     highlights = { config.highlights, "table", true },
+    extra = { config.extra, "table", true },
   })
   if not ok then
     return false, err
@@ -57,6 +58,26 @@ function M.validate(config)
   })
   if not ok then
     return false, err
+  end
+
+  for key, command in vim.spairs(config.extra or {}) do
+    ok, err = validate("git.extra." .. key, {
+      key = { key, "string" },
+      command = { command, "table" },
+    })
+    if not ok then
+      return false, err
+    end
+
+    ok, err = validate("git.extra." .. key, {
+      cmd = { command.cmd, "table" },
+      show_output = { command.show_output, { "boolean", "function" }, true },
+      pre_run = { command.pre_run, "function", true },
+      completions = { command.completions, { "table", "function" }, true },
+    })
+    if not ok then
+      return false, err
+    end
   end
 
   return true

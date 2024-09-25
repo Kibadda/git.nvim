@@ -30,6 +30,7 @@ vim.g.git = {
     Commit = { fg = "#ea6962" },
     Date = { fg = "#a9b665" },
   },
+  extra = {},
 }
 ```
 
