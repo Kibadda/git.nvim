@@ -20,12 +20,14 @@ function M:pre_run(fargs)
 end
 
 function M.completions(fargs)
-  if #fargs == 0 then
-    return vim.list_extend({ "--delete" }, require("git.cache").local_branches)
-  elseif fargs[1] == "--delete" then
-    return vim.list_extend({ "--force" }, require("git.cache").local_branches)
+  if #fargs > 1 then
+    if fargs[1] == "--delete" then
+      return vim.list_extend({ "--force" }, require("git.cache").local_branches)
+    else
+      return require("git.cache").local_branches
+    end
   else
-    return require("git.cache").local_branches
+    return vim.list_extend({ "--delete" }, require("git.cache").local_branches)
   end
 end
 
