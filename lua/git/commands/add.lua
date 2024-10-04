@@ -13,4 +13,4 @@ function M.completions()
   return vim.list_extend({ "--edit" }, require("git.cache").unstaged_files)
 end
 
-return require("git.commands.base").new(M)
+return M

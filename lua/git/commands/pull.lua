@@ -4,4 +4,4 @@ local M = {
   show_output = true,
 }
 
-return require("git.commands.base").new(M)
+return M

@@ -15,4 +15,4 @@ function M.completions(fargs)
   return require("git.cache").full_branches
 end
 
-return require("git.commands.base").new(M)
+return M

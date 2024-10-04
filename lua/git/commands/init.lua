@@ -1,10 +1,4 @@
-local extra = require("git.config").extra
-
-for key, command in pairs(extra) do
-  extra[key] = require("git.commands.base").new(command)
-end
-
-return vim.tbl_extend("keep", {
+local commands = vim.tbl_extend("keep", {
   add = require "git.commands.add",
   branch = require "git.commands.branch",
   commit = require "git.commands.commit",
@@ -21,4 +15,12 @@ return vim.tbl_extend("keep", {
   stash = require "git.commands.stash",
   status = require "git.commands.status",
   switch = require "git.commands.switch",
-}, extra) --[[@as table<string, git.command>]]
+}, require("git.config").extra)
+
+local base = require "git.commands.base"
+
+for key, command in pairs(commands) do
+  commands[key] = base.new(command)
+end
+
+return commands --[[@as table<string, git.command>]]

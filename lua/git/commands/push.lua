@@ -24,4 +24,4 @@ function M.completions(fargs)
   return { "--force-with-lease", "--set-upstream" }
 end
 
-return require("git.commands.base").new(M)
+return M

@@ -19,4 +19,4 @@ function M:show_output(options)
   options.options.filetype = "diff"
 end
 
-return require("git.commands.base").new(M)
+return M

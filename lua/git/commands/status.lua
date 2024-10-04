@@ -58,4 +58,4 @@ function M:show_output(options)
   end
 end
 
-return require("git.commands.base").new(M)
+return M
