@@ -1,6 +1,6 @@
 local M = {}
 
-function M.status()
+function M.merge_status()
   if vim.uv.fs_stat ".git/MERGE_HEAD" then
     return "merge"
   end
