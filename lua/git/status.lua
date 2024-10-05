@@ -23,6 +23,10 @@ function M.diff()
     removed = 0,
   }
 
+  if vim.bo[0].buftype ~= "" then
+    return diff
+  end
+
   local bufname = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(0), ":.")
   local current = vim.api.nvim_buf_get_lines(0, 0, -1, false)
   local index = require("git.utils").git_command { "show", (":%s"):format(bufname) }
