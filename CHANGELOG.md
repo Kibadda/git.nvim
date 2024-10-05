@@ -1,5 +1,27 @@
 # Changelog
 
+## [5.0.0](https://github.com/Kibadda/git.nvim/compare/v4.1.0...v5.0.0) (2024-10-05)
+
+
+### ⚠ BREAKING CHANGES
+
+* **status:** rename status.status -> status.merge_status
+
+### Features
+
+* **status:** add branch and diff components ([a464d54](https://github.com/Kibadda/git.nvim/commit/a464d546c072616d2c2a7add5007e5c1c0dea446))
+
+
+### Bug Fixes
+
+* **branch:** wrong completions on empty cmdline ([0e8c548](https://github.com/Kibadda/git.nvim/commit/0e8c54835c61391d4a8790deb6c39a4488bd7e4c))
+* **status:** do not calculate diff for buffers with buftype ([3d4269b](https://github.com/Kibadda/git.nvim/commit/3d4269beea12b10d35d8f5c2377b3a392536cbac))
+
+
+### Code Refactoring
+
+* **status:** rename status.status -&gt; status.merge_status ([621e21c](https://github.com/Kibadda/git.nvim/commit/621e21cbfea27143bfbcee26c7d6e18e80a89098))
+
 ## [4.1.0](https://github.com/Kibadda/git.nvim/compare/v4.0.0...v4.1.0) (2024-09-25)
 
 
