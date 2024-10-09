@@ -3,10 +3,17 @@ local M = {}
 local ns = vim.api.nvim_create_namespace "GitNvim"
 
 ---@param cmd string[]
-function M.git_command(cmd)
-  local result = vim.system(vim.list_extend({ "git", "--no-pager" }, cmd)):wait()
+---@param callback? fun(result: string[])
+function M.git_command(cmd, callback)
+  if not callback then
+    local result = vim.system(vim.list_extend({ "git", "--no-pager" }, cmd)):wait()
 
-  return vim.split(result.stdout, "\n")
+    return vim.split(result.stdout, "\n")
+  else
+    vim.system(vim.list_extend({ "git", "--no-pager" }, cmd), nil, function(result)
+      callback(vim.split(result.stdout, "\n"))
+    end)
+  end
 end
 
 ---@param opts { cmd: string[], prompt: string, decode?: (fun(line: string): any), format?: function, choice?: function }
