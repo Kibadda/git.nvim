@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.0.1](https://github.com/Kibadda/git.nvim/compare/v5.0.0...v5.0.1) (2024-10-09)
+
+
+### Performance Improvements
+
+* **status:** make components async ([bc48f5c](https://github.com/Kibadda/git.nvim/commit/bc48f5cb7a26ab66aaa678a1216009f60bddb7e6))
+
 ## [5.0.0](https://github.com/Kibadda/git.nvim/compare/v4.1.0...v5.0.0) (2024-10-05)
 
 
