@@ -17,7 +17,7 @@ end
 ---@param cmdline string
 ---@return string[]?
 function M.complete(cmdline)
-  local cmd, cmd_arg_lead = cmdline:match "^Git%s+(%S+)%s+(.*)$"
+  local cmd, cmd_arg_lead = cmdline:match "^Gi?t?%s+(%S+)%s+(.*)$"
 
   local commands = require "git.commands"
 
@@ -25,7 +25,7 @@ function M.complete(cmdline)
     return commands[cmd]:complete(cmd_arg_lead)
   end
 
-  cmd = cmdline:match "^Git%s+(.*)$"
+  cmd = cmdline:match "^Gi?t?%s+(.*)$"
 
   if cmd then
     local complete = vim.tbl_filter(function(command)
