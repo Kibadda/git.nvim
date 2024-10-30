@@ -1,5 +1,17 @@
 # Changelog
 
+## [5.1.0](https://github.com/Kibadda/git.nvim/compare/v5.0.1...v5.1.0) (2024-10-30)
+
+
+### Features
+
+* **diff:** enable treesitter for diff buffer ([2518302](https://github.com/Kibadda/git.nvim/commit/25183023acd2b91f7fde7d0f3410181761374cba))
+
+
+### Bug Fixes
+
+* **cmd:** show completions for abbreviated cmd ([16c257a](https://github.com/Kibadda/git.nvim/commit/16c257afafc1903f0fb86ec83c7a48035fa750d4))
+
 ## [5.0.1](https://github.com/Kibadda/git.nvim/compare/v5.0.0...v5.0.1) (2024-10-09)
 
 
