@@ -23,6 +23,7 @@ function M:pre_run(fargs)
             utils.open_buffer {
               name = "diff",
               lines = difflines,
+              treesitter = true,
               options = {
                 modifiable = false,
                 modified = false,

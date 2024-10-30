@@ -21,6 +21,7 @@ function M:show_output(options)
         utils.open_buffer {
           name = "diff",
           lines = difflines,
+          treesitter = true,
           options = {
             modifiable = false,
             modified = false,

@@ -17,6 +17,7 @@ end
 
 function M:show_output(options)
   options.options.filetype = "diff"
+  options.treesitter = true
 end
 
 return M
