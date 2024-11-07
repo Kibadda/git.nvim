@@ -1,5 +1,13 @@
 # Changelog
 
+## [5.1.1](https://github.com/Kibadda/git.nvim/compare/v5.1.0...v5.1.1) (2024-11-07)
+
+
+### Bug Fixes
+
+* **status:** properly show commit hash in detached HEAD ([c16754f](https://github.com/Kibadda/git.nvim/commit/c16754fa1a28bbf74ea1aba25bf5918d0a175561))
+* **status:** wrong branch name for detached HEAD ([cdcea79](https://github.com/Kibadda/git.nvim/commit/cdcea7973e57249065c29703fb0541cade97f065))
+
 ## [5.1.0](https://github.com/Kibadda/git.nvim/compare/v5.0.1...v5.1.0) (2024-10-30)
 
 
