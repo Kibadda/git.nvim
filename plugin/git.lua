@@ -71,7 +71,7 @@ vim.api.nvim_create_autocmd({ "TextChanged", "TextChangedI", "BufEnter", "FocusG
       elseif branch[1] ~= "HEAD" then
         cache[args.buf].branch = branch[1]
       else
-        utils.git_command({ "rev-parse", "--abbrev-ref", "HEAD" }, function(hash)
+        utils.git_command({ "rev-parse", "--short", "HEAD" }, function(hash)
           if not hash[1] or hash[1] == "" then
             cache[args.buf].branch = "HEAD"
           else
