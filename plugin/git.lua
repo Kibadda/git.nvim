@@ -28,7 +28,7 @@ end, {
   end,
 })
 
-vim.keymap.set("n", "gG", function()
+local function get_url()
   local utils = require "git.utils"
 
   local remote = utils.git_command({ "remote" })[1]
@@ -53,8 +53,37 @@ vim.keymap.set("n", "gG", function()
     url = url:gsub("%.git", ""):gsub(":", "/"):gsub("git@", "https://")
   end
 
-  vim.ui.open(url)
+  return url
+end
+
+vim.keymap.set("n", "gG", function()
+  local url = get_url()
+
+  if url then
+    vim.ui.open(url)
+  end
 end, { desc = "Open git project in browser" })
+
+vim.keymap.set("n", "gF", function()
+  local url = get_url()
+
+  if not url then
+    return
+  end
+
+  local utils = require "git.utils"
+
+  local branch = utils.git_command({ "rev-parse", "--abbrev-ref", "HEAD" })[1]
+
+  if not branch or branch == "" then
+    vim.notify("no branch found", vim.log.levels.WARN)
+    return
+  end
+
+  local bufname = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(0), ":.")
+
+  vim.ui.open(url .. "/blob/" .. branch .. "/" .. bufname)
+end, { desc = "Open git file in browser" })
 
 vim.api.nvim_create_autocmd({ "TextChanged", "TextChangedI", "BufEnter", "FocusGained" }, {
   group = group,
