@@ -104,7 +104,7 @@ vim.api.nvim_create_autocmd({ "TextChanged", "TextChangedI", "BufEnter", "FocusG
           if not hash[1] or hash[1] == "" then
             cache[args.buf].branch = "HEAD"
           else
-            cache[args.buf].branch = "HEAD (" .. hash[1] .. ")"
+            cache[args.buf].branch = "HEAD " .. hash[1]
           end
         end)
       end
