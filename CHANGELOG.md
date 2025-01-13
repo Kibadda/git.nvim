@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.2.1](https://github.com/Kibadda/git.nvim/compare/v5.2.0...v5.2.1) (2025-01-13)
+
+
+### Bug Fixes
+
+* change HEAD status ([10ba107](https://github.com/Kibadda/git.nvim/commit/10ba10706e20472d8bec82159e0d62e547716536))
+
 ## [5.2.0](https://github.com/Kibadda/git.nvim/compare/v5.1.0...v5.2.0) (2024-12-17)
 
 
