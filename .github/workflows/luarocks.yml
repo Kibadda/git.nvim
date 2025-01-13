@@ -1,17 +1,29 @@
-name: Push to Luarocks
-
+name: "Push to LuaRocks"
 on:
   push:
     tags:
-      - '*'
+      - "*"
+  release:
+    types:
+      - created
   workflow_dispatch:
 
 jobs:
-  luarocks-upload:
-    runs-on: ubuntu-22.04
+  luarocks-release:
+    runs-on: ubuntu-latest
+    name: LuaRocks upload
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Get Version
+        run: echo "LUAROCKS_VERSION=$(git describe --abbrev=0 --tags)" >> $GITHUB_ENV
       - name: LuaRocks Upload
         uses: nvim-neorocks/luarocks-tag-release@v7
         env:
           LUAROCKS_API_KEY: ${{ secrets.LUAROCKS_API_KEY }}
+        with:
+          version: ${{ env.LUAROCKS_VERSION }}
+          labels: |
+            neovim
