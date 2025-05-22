@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.3.0](https://github.com/Kibadda/git.nvim/compare/v5.2.1...v5.3.0) (2025-05-22)
+
+
+### Features
+
+* add nix files ([ecfc231](https://github.com/Kibadda/git.nvim/commit/ecfc2312636c6615dcc12d412a71b811d26cda8e))
+
 ## [5.2.1](https://github.com/Kibadda/git.nvim/compare/v5.2.0...v5.2.1) (2025-01-13)
 
 
