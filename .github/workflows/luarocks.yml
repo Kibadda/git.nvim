@@ -2,10 +2,7 @@ name: "Push to LuaRocks"
 on:
   push:
     tags:
-      - "*"
-  release:
-    types:
-      - created
+      - '*'
   workflow_dispatch:
 
 jobs:
