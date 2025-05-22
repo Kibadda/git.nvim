@@ -63,10 +63,9 @@ for name, val in pairs(opts.highlights or {}) do
   GitConfig.highlights[name] = val
 end
 
-local check = require "git.config.check"
-local ok, err = check.validate(GitConfig)
+local ok = require("git.config.check").validate(GitConfig)
 if not ok then
-  vim.notify("git: " .. err, vim.log.levels.ERROR)
+  vim.notify("git: there are errors in your config. see `:checkhealth git`", vim.log.levels.ERROR)
 end
 
 return GitConfig
