@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.4.0](https://github.com/Kibadda/git.nvim/compare/v5.3.0...v5.4.0) (2025-05-23)
+
+
+### Features
+
+* **keymap:** support other git urls in gG keymap ([7390aaf](https://github.com/Kibadda/git.nvim/commit/7390aafd3745fce04d99280f61bdb291559f1555))
+
 ## [5.3.0](https://github.com/Kibadda/git.nvim/compare/v5.2.1...v5.3.0) (2025-05-22)
 
 
