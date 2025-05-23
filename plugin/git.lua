@@ -49,8 +49,8 @@ local function get_url()
     return
   end
 
-  if vim.startswith(url, "git@") then
-    url = url:gsub("%.git", ""):gsub(":", "/"):gsub("git@", "https://")
+  if url:match "^.+@" then
+    url = url:gsub("%.git", ""):gsub(":", "/"):gsub("^.+@", "https://")
   end
 
   return url
